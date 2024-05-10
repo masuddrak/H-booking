@@ -8,6 +8,8 @@ import Register from "../Pages/Register";
 import Rooms from "../Pages/Rooms";
 import MyBooking from "../Pages/MyBooking";
 import AddRooms from "../Pages/AddRooms";
+import RoomDetails from "../components/RoomDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -36,7 +38,8 @@ const router = createBrowserRouter([
       },
       {
         path:"/rooms",
-        element:<Rooms></Rooms>
+        element:<Rooms></Rooms>,
+       
       },
       {
         path:"/mybooking",
@@ -45,6 +48,10 @@ const router = createBrowserRouter([
       {
         path:"/addroom",
         element:<AddRooms></AddRooms>
+      },
+      {
+        path:"/room/:id",
+        element:<RoomDetails></RoomDetails>
       },
     ]
   },

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
 const AddRooms = () => {
-    const {user}=useAuth()
+    const { user } = useAuth()
     const {
         register,
         handleSubmit,
@@ -10,14 +11,15 @@ const AddRooms = () => {
 
 
 
-    const heldelRegister = (data) => {
+    const heldelRegister = (room) => {
 
         try {
-            
+            const { data } = axios.post(`${import.meta.env.VITE_API_URL}/addroom`,room)
+            console.log(data)
         } catch (error) {
-            
+            console.log(error)
         }
-        console.table(data)
+        console.table(room)
 
     }
 
@@ -66,7 +68,7 @@ const AddRooms = () => {
                         </div>
                         <div className="space-y-1 text-sm">
                             <label htmlFor="Name" className="block text-white"> User Email</label>
-                            <input type="email" {...register("email")} defaultValue={user?.email} readOnly  placeholder="User Email" className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400" />
+                            <input type="email" {...register("email")} defaultValue={user?.email} readOnly placeholder="User Email" className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400" />
                         </div>
                         <div className="space-y-1 text-sm col-span-full">
                             <label htmlFor="Name" className="block text-white">Room Description</label>
