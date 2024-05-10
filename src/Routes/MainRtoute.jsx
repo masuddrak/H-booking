@@ -9,6 +9,7 @@ import Rooms from "../Pages/Rooms";
 import MyBooking from "../Pages/MyBooking";
 import AddRooms from "../Pages/AddRooms";
 import RoomDetails from "../components/RoomDetails";
+import axios from "axios";
 
 
 const router = createBrowserRouter([
@@ -51,7 +52,8 @@ const router = createBrowserRouter([
       },
       {
         path:"/room/:id",
-        element:<RoomDetails></RoomDetails>
+        element:<RoomDetails></RoomDetails>,
+        loader:({params})=>axios(`${import.meta.env.VITE_API_URL}/singleroom/${params.id}`)
       },
     ]
   },
