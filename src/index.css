@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu li > *:not(ul, .menu-title, details, .btn):active, .menu li > *:not(ul, .menu-title, details, .btn).active, .menu li > details > summary:active {
+
+    background: none;
+    color: black;
+    border-radius: 0;
+    border-bottom: 1px solid rgb(10, 2, 2);
+    
+}
+.menu li a{
+    padding: 0;
+}
