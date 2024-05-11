@@ -8,12 +8,13 @@ const useUpateRoom = () => {
     const email = user?.email
     const { isPending, isRefetching, data, refetch } = useQuery({
         queryKey: ["upadtebooking"],
+        enabled: !!email,
         queryFn: async () => {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/mybookedlist/${email}`)
             return res.json()
         }
     })
-  
+
     return { isPending, data, refetch, isRefetching }
 };
 

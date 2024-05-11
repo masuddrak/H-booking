@@ -6,31 +6,29 @@ import axios from 'axios';
 
 const MyBooking = () => {
 
-const {data,isPending,refetch}=useUpateRoom()
+    const { data, isPending, refetch } = useUpateRoom()
 
-      if(isPending){
-        return <h1 className="text-4xl">Loadeing ...........</h1>
-      }
-      
-    const handelCancelRoom = async (id,bookId) => {
+    if (isPending) {
+        return <h1 className='text-4xl'>Loading..........</h1>
+    }
+
+    const handelCancelRoom = async (id, bookId) => {
         console.log(id)
         try {
             const Availability = "Available"
-            const { data } =await axios.patch(`${import.meta.env.VITE_API_URL}/availability/${bookId}`, { Availability })
+            const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/availability/${bookId}`, { Availability })
             console.log(data)
         } catch (error) {
             console.log(error)
         }
-        if(isPending){
-            return <h1 className="text-4xl">Loadeing ...........</h1>
-          }
+
         const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
         console.log(data)
         refetch()
     }
-   
+
     return (
-       
+
         <div className="container mx-auto">
             <div className="overflow-x-auto">
                 <table className="table">
@@ -70,9 +68,9 @@ const {data,isPending,refetch}=useUpateRoom()
                                 <th className="flex gap-4">
 
                                     {/* delete booking*/}
-                                    <button onClick={()=>handelCancelRoom(room._id,room.bookId)} className='p-4 bg-red-400'>Cancel</button>
+                                    <button onClick={() => handelCancelRoom(room._id, room.bookId)} className='p-4 bg-red-400'>Cancel</button>
                                     {/* update booking */}
-                                   
+
                                     <UpdateDate room={room} ></UpdateDate>
                                 </th>
                             </tr>)

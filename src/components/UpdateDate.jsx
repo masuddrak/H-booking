@@ -20,11 +20,11 @@ const UpdateDate = ({ room }) => {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/updatedate/${room._id}`, { startDate })
             refetch()
             isRefetching
-            naviget("/about")
+            // naviget("/about")
         } catch (error) {
             console.log(error)
         }
-
+        refetch()
     }
     return (
         <div>

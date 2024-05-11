@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { data } from "autoprefixer";
 const RoomDetails = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [showModal, setShowModal] = useState(false);
     const loaderData = useLoaderData()
     const { user } = useAuth()
     const { _id, images3, images2, images1, Availability, Price, Size, Description, Offers } = loaderData?.data || {}
+    const naviget = useNavigate()
 
-
-   
 
     const heldelBook = (e) => {
         e.preventDefault()
@@ -38,15 +38,32 @@ const RoomDetails = () => {
 
         try {
             const { data } = axios.post(`${import.meta.env.VITE_API_URL}/bookrooms`, bookInfo)
+            naviget("/mybooking")
             console.log(data)
         } catch (error) {
             console.log(error)
         }
 
     }
-
+    const handelReviews = async(e) => {
+        e.preventDefault()
+        const from = e.target
+        const reviewRoomID = _id
+        const rating = from.rating.value
+        const userName = user?.displayName
+        const reviewEmail = user?.email
+        const reviewDate = startDate
+        const reviewInfo = { reviewRoomID, rating, userName, reviewEmail, reviewDate }
+        try {
+            const { data } =await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviewInfo)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+        console.table(reviewInfo)
+    }
     return (
-        <div className="container m-auto">
+        <div className="container m-auto mb-5">
             <div className="grid grid-cols-3">
                 <img className=" col-span-2 h-[50vh] w-full object-cover " src={images3} alt="" />
                 <div className="h-[50vh] w-full">
@@ -63,7 +80,7 @@ const RoomDetails = () => {
                     <p><span className="font-bold text-base-content">Room Size: </span>{Size}</p>
                     <p><span className="font-bold text-base-content">Availabilit: </span>{Availability}</p>
                     <p><span className="font-bold text-base-content">Special Offers: </span>{Offers}</p>
-                    {/*  */}
+                    {/*added book room  */}
                     <div>
                         <button
                             className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -109,7 +126,7 @@ const RoomDetails = () => {
                                                     </div>
                                                     <div className="w-full">
                                                         <label htmlFor="Name" className="block text-base-content"> Select Date</label>
-                                                        <DatePicker className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400 mb-4"  selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                        <DatePicker className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400 mb-4" selected={startDate} onChange={(date) => setStartDate(date)} />
                                                     </div>
                                                     <input
                                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 absolute right-0"
@@ -138,8 +155,30 @@ const RoomDetails = () => {
                             </>
                         ) : null}
                     </div>
-                    {/*  */}
+                    {/* end addded book room */}
                 </div>
+            </div>
+
+            {/* reviews */}
+            <div className="grid grid-cols-2">
+                <form onSubmit={handelReviews} className="space-y-3">
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="Name" className="block ">Rating</label>
+                        <input type="number" name="rating" placeholder="Rating" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="Name" className="block ">Username</label>
+                        <input type="text" defaultValue={user?.displayName} readOnly required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="Name" className="block ">Comment</label>
+                        <textarea type="number" rows={3} placeholder="comment" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                    </div>
+                    <div>
+                        <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Submit Now!</button>
+                    </div>
+                </form>
+                <div></div>
             </div>
         </div>
     );
