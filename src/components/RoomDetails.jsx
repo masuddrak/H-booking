@@ -14,7 +14,7 @@ const RoomDetails = () => {
     const { _id, images3, images2, images1, Availability, Price, Size, Description, Offers } = loaderData?.data || {}
 
 
-
+   
 
     const heldelBook = (e) => {
         e.preventDefault()
@@ -26,15 +26,16 @@ const RoomDetails = () => {
         const bookSize = Size
         const Availability = "unavailable"
         const bookInfo = { email, bookId, bookImage, bookPrice, bookSize, startDate }
+        if (loaderData?.data?.Availability === "unavailable") {
+            return toast.warning("it`s Already Booked")
+        }
         try {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/availability/${_id}`, { Availability })
             console.log(data)
         } catch (error) {
             console.log(error)
         }
-        if (Availability==="unavailable") {
-            return toast.warning("it`s Already Booked")
-        }
+
         try {
             const { data } = axios.post(`${import.meta.env.VITE_API_URL}/bookrooms`, bookInfo)
             console.log(data)
@@ -108,7 +109,7 @@ const RoomDetails = () => {
                                                     </div>
                                                     <div className="w-full">
                                                         <label htmlFor="Name" className="block text-base-content"> Select Date</label>
-                                                        <DatePicker className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400 mb-4" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                        <DatePicker className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400 mb-4"  selected={startDate} onChange={(date) => setStartDate(date)} />
                                                     </div>
                                                     <input
                                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 absolute right-0"

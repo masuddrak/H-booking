@@ -1,19 +1,36 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
+import 'reactjs-popup/dist/index.css';
+import UpdateDate from "../components/UpdateDate";
+import useUpateRoom from "../hooks/useUpateRoom";
+import axios from 'axios';
+
 
 const MyBooking = () => {
-    const { user } = useAuth()
-    const [bookingRooms, setBookingRooms] = useState([])
-    useEffect(() => {
-        const handelBookData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/mybookedlist/${user?.email}`)
-            setBookingRooms(data)
+
+const {data,isPending,refetch}=useUpateRoom()
+
+      if(isPending){
+        return <h1 className="text-4xl">Loadeing ...........</h1>
+      }
+      
+    const handelCancelRoom = async (id,bookId) => {
+        console.log(id)
+        try {
+            const Availability = "Available"
+            const { data } =await axios.patch(`${import.meta.env.VITE_API_URL}/availability/${bookId}`, { Availability })
+            console.log(data)
+        } catch (error) {
+            console.log(error)
         }
-        handelBookData()
-    }, [user])
-    console.log(bookingRooms)
+        if(isPending){
+            return <h1 className="text-4xl">Loadeing ...........</h1>
+          }
+        const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
+        console.log(data)
+        refetch()
+    }
+   
     return (
+       
         <div className="container mx-auto">
             <div className="overflow-x-auto">
                 <table className="table">
@@ -30,29 +47,33 @@ const MyBooking = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookingRooms.map(room => <tr key={room._id}>
+                            data?.map(room => <tr key={room._id}>
                                 <td>
-                                        <div className="avatar">
-                                            <div className="mask w-12 h-12">
-                                                <img src={room.bookImage} alt="bookImage" />
-                                            </div>
+                                    <div className="avatar">
+                                        <div className="mask w-12 h-12">
+                                            <img src={room.bookImage} alt="bookImage" />
                                         </div>
+                                    </div>
                                 </td>
                                 <td>
-                                   
+
                                     <span >{room.bookSize}sqb</span>
                                 </td>
                                 <td>
-                                      
-                                <span >${room.bookPrice}</span>
+
+                                    <span >${room.bookPrice}</span>
                                 </td>
                                 <td>
-                                      
-                                <span >{room.startDate}</span>
+
+                                    <span >{new Date(room.startDate).toLocaleDateString()}</span>
                                 </td>
                                 <th className="flex gap-4">
-                                    <button className="bg-red-400 px-2 py-1 text-white rounded-sm">Cencel</button>
-                                    <button className="bg-green-600 px-2 py-1 text-white rounded-sm">Update</button>
+
+                                    {/* delete booking*/}
+                                    <button onClick={()=>handelCancelRoom(room._id,room.bookId)} className='p-4 bg-red-400'>Cancel</button>
+                                    {/* update booking */}
+                                   
+                                    <UpdateDate room={room} ></UpdateDate>
                                 </th>
                             </tr>)
                         }
