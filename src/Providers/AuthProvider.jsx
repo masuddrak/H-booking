@@ -4,6 +4,7 @@ import auth from "../firebase/firebase.config";
 import PropTypes from 'prop-types';
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 export const authContext = createContext(null)
 // components
@@ -43,13 +44,38 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const obseverId = onAuthStateChanged(auth, (currentUser) => {
+            const currentUserEmail=currentUser?.email || user?.email
             setUser(currentUser)
+            console.log('CurrentUser-->', currentUser)
             setLoader(false)
-        });
-        return (() => {
-            obseverId()
-        })
-
+            if (currentUser) {
+              const userEmail = { email: currentUserEmail }
+              const handelJwt = async () => {
+                try {
+                  const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, userEmail, { withCredentials: true })
+                  console.log(data)
+                } catch (error) {
+                  console.log(error)
+                }
+              }
+              handelJwt()
+            }
+            else{
+              const userEmail = { email: currentUserEmail }
+              const handelJwt = async () => {
+                try {
+                  const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/logout`, userEmail, { withCredentials: true })
+                  console.log(data)
+                } catch (error) {
+                  console.log(error)
+                }
+              }
+              handelJwt()
+            }
+          })
+          return () => {
+            return obseverId()
+          }
     }, [])
 
    

@@ -10,6 +10,7 @@ import MyBooking from "../Pages/MyBooking";
 import AddRooms from "../Pages/AddRooms";
 import RoomDetails from "../components/RoomDetails";
 import axios from "axios";
+import PrivetRoute from "../Providers/PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/mybooking",
-        element:<MyBooking></MyBooking>
+        element: <PrivetRoute><MyBooking></MyBooking></PrivetRoute>
       },
       {
         path:"/addroom",
