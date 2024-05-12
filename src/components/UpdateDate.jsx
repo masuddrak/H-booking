@@ -12,7 +12,6 @@ const UpdateDate = ({ room }) => {
     const [startDate, setStartDate] = useState(new Date());
     const [showModal, setShowModal] = useState(false);
     const { refetch } = useUpateRoom()
-    const naviget=useNavigate()
     const upadateBooking = (e) => {
         e.preventDefault()
 

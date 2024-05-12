@@ -41,7 +41,7 @@ const Header = () => {
                             {navlinks}
                         </ul>
                     </div>
-                    <Link className="text-xl font-extrabold">H-Booking</Link>
+                    <Link className="text-xl font-extrabold">H-Radisson</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu gap-5 menu-horizontal px-1 z-20">
