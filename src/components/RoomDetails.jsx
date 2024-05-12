@@ -26,11 +26,14 @@ const RoomDetails = () => {
         }
     })
 
-if(isPending){
-    return <h1>Loading.......</h1>
-}
+    if (isPending) {
+        return <h1>Loading.......</h1>
+    }
     const heldelBook = (e) => {
         e.preventDefault()
+        if (user === null) {
+            return naviget("/login")
+        }
         const from = e.target
         const email = from.email.value
         const bookId = _id
@@ -51,9 +54,12 @@ if(isPending){
         }
 
         try {
+
+
             const { data } = axios.post(`${import.meta.env.VITE_API_URL}/bookrooms`, bookInfo)
             naviget("/mybooking")
             toast.success("Room Booking Success!")
+
         } catch (error) {
             console.log(error)
         }
@@ -64,14 +70,17 @@ if(isPending){
         const from = e.target
         const reviewRoomID = _id
         const rating = from.rating.value
+        if (rating < 1 || rating > 5) {
+            return toast.warning("plase input rating 1 to 5")
+        }
         const userName = user?.displayName
         const reviewEmail = user?.email
         const reviewDate = startDate
-        const comment=from.comment.value
-        const reviewInfo = { reviewRoomID, rating, userName, reviewEmail, reviewDate,comment }
+        const comment = from.comment.value
+        const reviewInfo = { reviewRoomID, rating, userName, reviewEmail, reviewDate, comment }
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviewInfo)
-            console.log("rivi",data)
+            console.log("rivi", data)
             refetch()
         } catch (error) {
             toast.warning("Unauthorized Access")

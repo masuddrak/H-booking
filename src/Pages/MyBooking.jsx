@@ -2,17 +2,19 @@ import 'reactjs-popup/dist/index.css';
 import UpdateDate from "../components/UpdateDate";
 import useUpateRoom from "../hooks/useUpateRoom";
 import axios from 'axios';
+import moment from 'moment';
+import { useState } from 'react';
 
 
 const MyBooking = () => {
-
+    const [toDay, setStartDate] = useState(new Date());
     const { data, isPending, refetch } = useUpateRoom()
 
     if (isPending) {
         return <h1 className='text-4xl'>Loading..........</h1>
     }
 
-    const handelCancelRoom = async (id, bookId) => {
+    const handelCancelRoom = async (id, bookId, endDate) => {
         console.log(id)
         try {
             const Availability = "Available"
@@ -21,10 +23,20 @@ const MyBooking = () => {
         } catch (error) {
             console.log(error)
         }
+        const dateB = moment(toDay);
+        const dateC = moment(endDate);
 
-        const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
-        console.log(data)
-        refetch()
+        const remainingDay = dateC.diff(dateB, 'days')
+
+        if (remainingDay > 1) {
+            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
+            console.log(data)
+            refetch()
+        }
+        else{
+            return alert("not cancel book")
+        }
+
     }
 
     return (
@@ -68,7 +80,7 @@ const MyBooking = () => {
                                 <th className="flex gap-4">
 
                                     {/* delete booking*/}
-                                    <button onClick={() => handelCancelRoom(room._id, room.bookId)} className='p-4 bg-red-400'>Cancel</button>
+                                    <button onClick={() => handelCancelRoom(room._id, room.bookId, room?.startDate)} className='p-4 bg-red-400'>Cancel</button>
                                     {/* update booking */}
 
                                     <UpdateDate room={room} ></UpdateDate>
