@@ -84,11 +84,11 @@ const Register = () => {
                 <form onSubmit={handleSubmit(heldelRegister)} className="space-y-6 text-gray-600">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="Name" className="block dark:text-gray-600">Name</label>
-                        <input type="text" {...register("name")} placeholder="Name" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input type="text" {...register("name")} placeholder="Name" required className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block dark:text-gray-600">Email</label>
-                        <input type="email" {...register("email")} placeholder="Email"  className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input type="email" {...register("email")} placeholder="Email" required  className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="text" className="block dark:text-gray-600">Photo</label>
@@ -99,7 +99,7 @@ const Register = () => {
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-600">Password</label>
                         <div className="relative">
-                            <input type={hiddenPass ? "password" : "text"} {...register("password")} placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                            <input type={hiddenPass ? "password" : "text"} {...register("password")} required placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                             <span onClick={() => setHiddenPass(!hiddenPass)} className=" text-2xl absolute right-1 top-2"><IoEyeSharp></IoEyeSharp></span>
                         </div>
                     </div>

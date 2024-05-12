@@ -7,6 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import { data } from "autoprefixer";
+import { useQuery } from "@tanstack/react-query";
+import Review from "./Review";
 const RoomDetails = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [showModal, setShowModal] = useState(false);
@@ -15,7 +17,18 @@ const RoomDetails = () => {
     const { _id, images3, images2, images1, Availability, Price, Size, Description, Offers } = loaderData?.data || {}
     const naviget = useNavigate()
 
+    const { isPending, isRefetching, data, refetch } = useQuery({
+        queryKey: ["review"],
+        enabled: !!_id,
+        queryFn: async () => {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/findroomreviewa/${_id}`)
+            return res.json()
+        }
+    })
 
+if(isPending){
+    return <h1>Loading.......</h1>
+}
     const heldelBook = (e) => {
         e.preventDefault()
         const from = e.target
@@ -32,6 +45,7 @@ const RoomDetails = () => {
         try {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/availability/${_id}`, { Availability })
             console.log(data)
+            refetch()
         } catch (error) {
             console.log(error)
         }
@@ -39,13 +53,13 @@ const RoomDetails = () => {
         try {
             const { data } = axios.post(`${import.meta.env.VITE_API_URL}/bookrooms`, bookInfo)
             naviget("/mybooking")
-            console.log(data)
+            toast.success("Room Booking Success!")
         } catch (error) {
             console.log(error)
         }
 
     }
-    const handelReviews = async(e) => {
+    const handelReviews = async (e) => {
         e.preventDefault()
         const from = e.target
         const reviewRoomID = _id
@@ -53,12 +67,14 @@ const RoomDetails = () => {
         const userName = user?.displayName
         const reviewEmail = user?.email
         const reviewDate = startDate
-        const reviewInfo = { reviewRoomID, rating, userName, reviewEmail, reviewDate }
+        const comment=from.comment.value
+        const reviewInfo = { reviewRoomID, rating, userName, reviewEmail, reviewDate,comment }
         try {
-            const { data } =await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviewInfo)
-            console.log(data)
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviewInfo)
+            console.log("rivi",data)
+            refetch()
         } catch (error) {
-            console.log(error)
+            toast.warning("Unauthorized Access")
         }
         console.table(reviewInfo)
     }
@@ -74,6 +90,8 @@ const RoomDetails = () => {
             <div className="grid grid-cols-3 gap-5 mt-5">
                 <div className="col-span-2">
                     <p>{Description}</p>
+                    {/* revies */}
+
                 </div>
                 <div className="shadow-lg rounded-lg p-4 space-y-1">
                     <p><span className="font-bold text-base-content">Price per Night: </span>${Price}</p>
@@ -158,7 +176,12 @@ const RoomDetails = () => {
                     {/* end addded book room */}
                 </div>
             </div>
-
+            {/* reviews container */}
+            <div className="md:w-2/5 mb-10">
+                {
+                    data.map(review => <Review key={review._id} review={review}></Review>)
+                }
+            </div>
             {/* reviews */}
             <div className="grid grid-cols-2">
                 <form onSubmit={handelReviews} className="space-y-3">
@@ -172,7 +195,7 @@ const RoomDetails = () => {
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="Name" className="block ">Comment</label>
-                        <textarea type="number" rows={3} placeholder="comment" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                        <textarea type="number" name="comment" rows={3} placeholder="comment" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
                     </div>
                     <div>
                         <button className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Submit Now!</button>

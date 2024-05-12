@@ -4,13 +4,14 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import useUpateRoom from "../hooks/useUpateRoom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const UpdateDate = ({ room }) => {
     const { user } = useAuth()
     const [startDate, setStartDate] = useState(new Date());
     const [showModal, setShowModal] = useState(false);
-    const { refetch,isRefetching } = useUpateRoom()
+    const { refetch } = useUpateRoom()
     const naviget=useNavigate()
     const upadateBooking = (e) => {
         e.preventDefault()
@@ -19,8 +20,7 @@ const UpdateDate = ({ room }) => {
         try {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/updatedate/${room._id}`, { startDate })
             refetch()
-            isRefetching
-            // naviget("/about")
+            toast.success("Update Your Date Success!")
         } catch (error) {
             console.log(error)
         }
@@ -59,7 +59,7 @@ const UpdateDate = ({ room }) => {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <form onSubmit={upadateBooking} className="space-y-3">
+                                    <form onSubmit={upadateBooking}  className="space-y-3">
 
                                         <div className="space-y-1 text-sm">
                                             <label htmlFor="Name" className="block text-white"> User Email</label>
@@ -69,12 +69,12 @@ const UpdateDate = ({ room }) => {
                                             <label htmlFor="Name" className="block text-base-content"> Select Date</label>
                                             <ReactDatePicker className="w-full px-2 outline-0 py-4 border-b-[1px] border-gray-400 mb-4" defaultValue={room?.startDate} selected={startDate} onChange={(date) => setStartDate(date)} />
                                         </div>
-                                        <input
+                                        <button
                                             className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 absolute right-0"
-                                            type="submit"
+                                         
                                             // onClick={() => setShowModal(false)}
-                                            value="Update"
-                                        />
+                                          
+                                        >Update</button>
 
                                     </form>
                                 </div>
