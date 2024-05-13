@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       {
         path:"/rooms",
         element:<Rooms></Rooms>,
+        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/roomcount`)
        
       },
       {

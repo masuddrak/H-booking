@@ -34,8 +34,8 @@ export default function HomeBanner() {
                 <SwiperSlide>
                     <div style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner1})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center" >
                             <div className="space-y-5 p-5 w-full  lg:w-2/3  text-gray-200 text-center uppercase">
-                                <h2 className="text-4xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
-                                <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
+                                <h2 className="text-2xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
+                                <p className=''>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
                                     <button className="outline outline-1 outline-gray-200  px-4 py-2  uppercase">purchase now</button>
                             </div>
                     </div>
@@ -43,7 +43,7 @@ export default function HomeBanner() {
                 <SwiperSlide>
                     <div style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner2})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center" >
                             <div className="space-y-5 p-5 w-full  lg:w-2/3  text-gray-200 text-center uppercase">
-                                <h2 className="text-4xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
+                                <h2 className=" text-2xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
                                 <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
                                     <button className="outline outline-1 outline-gray-200  px-4 py-2  uppercase">purchase now</button>
                             </div>
@@ -52,7 +52,7 @@ export default function HomeBanner() {
                 <SwiperSlide>
                     <div style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner3})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center" >
                             <div className="space-y-5 p-5 w-full  lg:w-2/3  text-gray-200 text-center uppercase">
-                                <h2 className="text-4xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
+                                <h2 className="text-2xl lg:text-6xl font-bold tracking-wide ">Affordable Price For Car Servicing</h2>
                                 <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
                                     <button className="outline outline-1 outline-gray-200  px-4 py-2  uppercase">purchase now</button>
                             </div>

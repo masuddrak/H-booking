@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const UpdateDate = ({ room }) => {
     const { user } = useAuth()
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(room.startDate);
     const [showModal, setShowModal] = useState(false);
     const { refetch } = useUpateRoom()
     const upadateBooking = (e) => {
@@ -18,6 +18,7 @@ const UpdateDate = ({ room }) => {
         console.log("updatte date", startDate)
         try {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/updatedate/${room._id}`, { startDate })
+            setShowModal(false)
             refetch()
             toast.success("Update Your Date Success!")
         } catch (error) {

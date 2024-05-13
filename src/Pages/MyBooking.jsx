@@ -4,39 +4,59 @@ import useUpateRoom from "../hooks/useUpateRoom";
 import axios from 'axios';
 import moment from 'moment';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 
 const MyBooking = () => {
     const [toDay, setStartDate] = useState(new Date());
     const { data, isPending, refetch } = useUpateRoom()
-  
+
 
     if (isPending) {
         return <h1 className='text-4xl'>Loading..........</h1>
     }
 
     const handelCancelRoom = async (id, bookId, endDate) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                try {
+                    const Availability = "Available"
+                    const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/availability/${bookId}`, { Availability })
+                    console.log(data)
+                } catch (error) {
+                    console.log(error)
+                }
+                const dateB = moment(toDay);
+                const dateC = moment(endDate);
+
+                const remainingDay = dateC.diff(dateB, 'days')
+
+                if (remainingDay > 1) {
+                    const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
+                    console.log(data)
+                    refetch()
+                }
+                else {
+                    return toast.warning(`Can Not cancel book ${toDay}`)
+                }
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
         console.log(id)
-        try {
-            const Availability = "Available"
-            const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/availability/${bookId}`, { Availability })
-            console.log(data)
-        } catch (error) {
-            console.log(error)
-        }
-        const dateB = moment(toDay);
-        const dateC = moment(endDate);
 
-        const remainingDay = dateC.diff(dateB, 'days')
-
-        if (remainingDay > 1) {
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
-            console.log(data)
-            refetch()
-        }
-        else{
-            return alert("not cancel book")
-        }
 
     }
 
