@@ -41,7 +41,8 @@ const Header = () => {
                             {navlinks}
                         </ul>
                     </div>
-                    <Link className="text-xl font-extrabold">H-Radisson</Link>
+                    <Link className="text-xl font-extrabold"><span className="text-pink-500">H-R</span>
+                    adisson</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu gap-5 menu-horizontal px-1 z-20">
@@ -68,9 +69,7 @@ const Header = () => {
                             </ul>
                         </div>
                     </div> : <div className="flex gap-3 items-center">
-                        <Link to="/login" className="">Login</Link>
-                        <div className="border border-1 h-2"></div>
-                        <Link to="/register" className="bn">Register</Link>
+                        <Link to="/login" className="bg-pink-500 text-white rounded background-transparent font-bold uppercase px-6 py-2 text-sm ">Login</Link>
                     </div>}
                 </div>
             </div>

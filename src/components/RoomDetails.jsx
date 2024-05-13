@@ -88,21 +88,21 @@ const RoomDetails = () => {
         console.table(reviewInfo)
     }
     return (
-        <div className="container m-auto mb-5">
-            <div className="grid grid-cols-3">
+        <div className="container m-auto  md:mb-5">
+            <div className="grid mx-2 md:mx-0 grid-cols-3">
                 <img className=" col-span-2 h-[50vh] w-full object-cover " src={images3} alt="" />
                 <div className="h-[50vh] w-full">
                     <img className="h-1/2 object-cover w-full" src={images2} alt="" />
                     <img className="h-1/2 object-cover w-full" src={images1} alt="" />
                 </div>
             </div>
-            <div className="grid grid-cols-3 gap-5 mt-5">
-                <div className="col-span-2">
+            <div className="md:grid md:grid-cols-3 mx-2 gap-5 md:mt-5">
+                <div className="col-span-2 w-full">
                     <p>{Description}</p>
                     {/* revies */}
 
                 </div>
-                <div className="shadow-lg rounded-lg p-4 space-y-1">
+                <div className="shadow-lg w-full rounded-lg p-4 space-y-1">
                     <p><span className="font-bold text-base-content">Price per Night: </span>${Price}</p>
                     <p><span className="font-bold text-base-content">Room Size: </span>{Size}</p>
                     <p><span className="font-bold text-base-content">Availabilit: </span>{Availability}</p>
