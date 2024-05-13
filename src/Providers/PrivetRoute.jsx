@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { authContext } from "./AuthProvider";
+import { BallTriangle } from "react-loader-spinner";
 
 
 const PrivetRoute = ({ children }) => {
@@ -11,9 +12,18 @@ const PrivetRoute = ({ children }) => {
   
     // console.log(location)
     if (loader) {
-        return <div className="min-h-[70vh] flex justify-center items-center">
-            <h1 className="text-5xl"><span className="loading loading-ring loading-lg"></span></h1>
-        </div>
+        return <div className="h-[80vh] flex justify-center items-center">
+         <BallTriangle
+                height={100}
+                width={100}
+                radius={5}
+                color="#4fa94d"
+                ariaLabel="ball-triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
+    </div>
     }
     if (user) {
         return children

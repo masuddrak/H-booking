@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { authContext } from "../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-
+import logimage from "../assets/banner1.jpg"
 
 const Register = () => {
     const [hiddenPass, setHiddenPass] = useState(true)
@@ -78,32 +78,32 @@ const Register = () => {
             })
     }
     return (
-        <div className="flex justify-center min-h-[50vh] mt-10">
-            <div className="w-full  max-w-md p-8 space-y-3 rounded-xl  dark:text-gray-800 bg-gray-600 text-white">
-                <h1 className="text-2xl font-bold text-center">Sign Up</h1>
+        <div  style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${logimage})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center">
+            <div className="text-gray-100 mx-3 md:mx-0 w-full md:w-1/2 lg:w-1/4">
+                <h1 className="text-2xl font-bold text-center">Register Now!</h1>
                 <form onSubmit={handleSubmit(heldelRegister)} className="space-y-6 text-gray-600">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="Name" className="block dark:text-gray-600">Name</label>
-                        <input type="text" {...register("name")} placeholder="Name" required className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input type="text" {...register("name")} placeholder="Name" required className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block dark:text-gray-600">Email</label>
-                        <input type="email" {...register("email")} placeholder="Email" required  className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input type="email" {...register("email")} placeholder="Email" required  className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="text" className="block dark:text-gray-600">Photo</label>
-                        <input type="text" {...register("photo")} placeholder="photo url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <input type="text" {...register("photo")} placeholder="photo url" className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
                     </div>
 
 
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-600">Password</label>
                         <div className="relative">
-                            <input type={hiddenPass ? "password" : "text"} {...register("password")} required placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                            <input type={hiddenPass ? "password" : "text"} {...register("password")} required placeholder="Password" className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
                             <span onClick={() => setHiddenPass(!hiddenPass)} className=" text-2xl absolute right-1 top-2"><IoEyeSharp></IoEyeSharp></span>
                         </div>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm bg-blue-800 text-white">Sign Up</button>
+                    <button className="bg-pink-500 w-full text-white rounded background-transparent font-bold uppercase px-6 py-2 text-sm ">Sign Up</button>
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
@@ -124,7 +124,7 @@ const Register = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6 dark:text-gray-600">allready have an account?
-                    <Link to="/login" rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Login</Link>
+                    <Link to="/login" rel="noopener noreferrer" href="#" className="underline text-pink-500">Login</Link>
                 </p>
             </div>
         </div>

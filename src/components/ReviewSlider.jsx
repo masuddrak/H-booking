@@ -45,7 +45,7 @@ const ReviewSlider = () => {
                     {reviews.map((review, index) => (
                         <SwiperSlide key={index} review={review}>
                             <div className="p-4 shadow-md z-40 my-4">
-                                <p className="flex items-center">{review.rating}{[...Array(parseInt(review.rating))].map((rat, index) => <IoIosStar key={index}></IoIosStar>)}</p>
+                                <p className="flex items-center">{review.rating}{[...Array(parseInt(review.rating))].map((rat, index) => <IoIosStar key={index} className="text-pink-500"></IoIosStar>)}</p>
                                 <p className="font-semibold">{review.userName}</p>
                                 <p>{review.reviewDate}</p>
                                 <p>{review.comment}</p>

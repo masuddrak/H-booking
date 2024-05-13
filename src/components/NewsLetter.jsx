@@ -6,14 +6,16 @@ const NewsLetter = () => {
 
             <div className="text-gray-200 space-y-4">
                 <div className="text-center space-y-3">
-                    <h2 className="text-4xl font-bold">Get 20% OFF Your <br /> First Booking!</h2>
+                    <h2 className="text-xl md:text-4xl font-bold">Get 20% OFF Your <br /> First Booking!</h2>
                     <p>Don’t Wanna Miss Somethings? Subscribe Right Now & Get The Special Discount & Monthly Newsletter</p>
                 </div>
-                <div className="grid grid-cols-3 justify-center items-center">
+                <div className="md:grid grid-cols-3 justify-center  items-center">
                     <div className="col-span-2">
                         <input type="text" className="outline-0 p-4 w-full text-black" placeholder="Your Email Address" />
                     </div>
-                    <button className="p-4 bg-pink-500">Subscribe Now</button>
+                    <div className="flex justify-center md:justify-start">
+                        <button className="p-4 bg-pink-500">Subscribe Now</button>
+                    </div>
                 </div>
             </div>
 

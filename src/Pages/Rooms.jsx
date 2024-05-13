@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Room from "../components/Room";
 import { useLoaderData } from "react-router-dom";
+import { BallTriangle } from "react-loader-spinner";
 
 
 const Rooms = () => {
+    const [rommsLoading, setRoomsLoading] = useState(true)
     const [rooms, setRooms] = useState([])
     const [pageItems, setPageItems] = useState(6)
     const [currentPage, setCurrentPage] = useState(0)
@@ -32,10 +34,12 @@ const Rooms = () => {
     useEffect(() => {
         const fackData = async () => {
             const { data } = await axios(`${import.meta.env.VITE_API_URL}/allrooms?page=${currentPage}&size=${pageItems}`)
+
             setRooms(data)
+            setRoomsLoading(false)
         }
         fackData()
-    }, [currentPage, pageItems])
+    }, [currentPage, pageItems, setRoomsLoading])
     // search Price
     const handelSerarch = async (e) => {
         e.preventDefault()
@@ -45,6 +49,21 @@ const Rooms = () => {
 
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/searchroom?minPrice=${minPrice}&maxPrice=${maxPrice}`)
         setRooms(data)
+        setRoomsLoading(false)
+    }
+    if (rommsLoading) {
+        return <div className="h-[80vh] flex justify-center items-center">
+            <BallTriangle
+                height={100}
+                width={100}
+                radius={5}
+                color="#4fa94d"
+                ariaLabel="ball-triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
+        </div>
     }
     return (
         <div className="container mx-auto">
@@ -57,11 +76,11 @@ const Rooms = () => {
                         <input type="number" name="maxPrice" placeholder="Maximum Price" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
                     </div>
                     <div>
-                        <input type="submit" value="search" className="bg-pink-500 text-white  px-3 py-1 rounded-md" />
+                        <input type="submit" value="search" className="bg-pink-500 text-white rounded background-transparent font-bold uppercase px-6 py-2 text-sm" />
                     </div>
                 </form>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 mx-2 md:mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-2 md:mb-5">
                 {
                     rooms.map(room => <Room key={room._id} room={room}></Room>)
                 }

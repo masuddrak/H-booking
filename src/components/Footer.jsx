@@ -5,7 +5,7 @@ import { ImFacebook2 } from "react-icons/im";
 
 const Footer = () => {
     return (
-        <div className="bg-base-200 ">
+        <div className="bg-base-200">
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <aside>
                     <Link className="text-xl font-extrabold">H-Radisson</Link>
@@ -16,14 +16,12 @@ const Footer = () => {
                     <a className="link link-hover">Branding</a>
                     <a className="link link-hover">Design</a>
                     <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Company</h6>
                     <a className="link link-hover">Home</a>
-                    <a className="link link-hover">All Tourists Spot</a>
-                    <a className="link link-hover">Add Tourists Spot</a>
-                    <a className="link link-hover">My List</a>
+                    <a className="link link-hover">Rooms</a>
+                    <a className="link link-hover">My Bookin</a>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Contact Info</h6>
@@ -35,8 +33,8 @@ const Footer = () => {
                 </nav>
             </footer>
             {/* <hr className="text-gray-500  "></hr> */}
-            <div className="flex justify-center mb-3 border-t-[0.2px] border-gray-300">
-                <p>&copy; | Masud Rana. All Rights Reserved.</p>
+            <div className="flex justify-center  border-t-[0.2px] border-gray-300">
+                <p className="p-3">&copy; | Masud Rana. All Rights Reserved.</p>
             </div>
         </div>
     );

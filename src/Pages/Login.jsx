@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../Providers/AuthProvider";
 import { toast } from "react-toastify";
+import logimage from "../assets/banner1.jpg"
 const Login = () => {
     const location = useLocation()
     const naviget = useNavigate()
@@ -50,20 +51,20 @@ const Login = () => {
             })
     }
     return (
-        <div className="flex justify-center min-h-[50vh] mt-10">
-            <div className="w-full  max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 bg-gray-600 text-white">
+        <div  style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${logimage})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center">
+            <div className="text-gray-100 mx-3 md:mx-0 w-full md:w-1/2 lg:w-1/4">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
                 <form onSubmit={handleSubmit(heldelLogin)} className="space-y-6 text-gray-600">
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="email" className="block dark:text-gray-600">Email</label>
-                        <input type="email" {...register("email")} placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <label htmlFor="email" className="text-gray-100">Email</label>
+                        <input type="email" {...register("email")} placeholder="Email" className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                        <input type="password" {...register("password")} placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                        <label htmlFor="password" className="text-gray-100">Password</label>
+                        <input type="password" {...register("password")} placeholder="Password" className="w-full px-2 outline-0 py-2 border-b-[2px]  border-pink-500" />
 
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm bg-blue-800 text-white">Login</button>
+                    <button className="bg-pink-500 w-full text-white rounded background-transparent font-bold uppercase px-6 py-2 text-sm ">Login</button>
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
@@ -84,7 +85,7 @@ const Login = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don`t have an account?
-                    <Link to="/register" rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign up</Link>
+                    <Link to="/register" rel="noopener noreferrer" href="#" className="underline text-pink-500 dark:text-gray-800">Sign up</Link>
                 </p>
             </div>
         </div>

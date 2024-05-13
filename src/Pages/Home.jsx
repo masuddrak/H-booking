@@ -6,6 +6,7 @@ import ReviewSlider from "../components/ReviewSlider";
 import axios from "axios";
 import FeacherRoom from "../components/FeacherRoom";
 import SectionTitle from "../components/SectionTitle";
+import { BallTriangle } from "react-loader-spinner";
 
 const Home = () => {
     const [rooms, setRooms] = useState([])
@@ -21,7 +22,18 @@ const Home = () => {
         fackData()
     }, [])
     if (loader) {
-        return <h1>Loading.........</h1>
+        return <div className="h-[80vh] flex justify-center items-center">
+            <BallTriangle
+                height={100}
+                width={100}
+                radius={5}
+                color="#4fa94d"
+                ariaLabel="ball-triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
+        </div>
     }
 
     return (
@@ -30,17 +42,23 @@ const Home = () => {
             {/* feacher section */}
             <div className="bg-base-content glass ">
                 <SectionTitle></SectionTitle>
-                <div className="grid container  mx-auto py-10  grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 ">
+                <div className="grid container  mx-auto py-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
                     {
                         rooms.map(room => <FeacherRoom key={room._id} room={room}></FeacherRoom>)
                     }
                 </div>
             </div>
             {/* feacher section  end*/}
+            <div className="md:w-1/2 mx-auto flex justify-center mt-10 pt-6">
+                <div className="text-center space-y-2">
+                    <h1 className="text-base-content text-xl md:text-4xl font-bold">Client Reviews</h1>
+                    <p className="text-base-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta molestiae deleniti perspiciatis totam at quos est vero, dolore vel reiciendis consequatur magni, quasi aliquam qui. Illo dolorem quia consectetur magni!</p>
+                </div>
+            </div>
             <div className="container mx-auto">
                 <ReviewSlider></ReviewSlider>
             </div>
-            <div className="my-6">
+            <div className="">
                 <NewsLetter></NewsLetter>
             </div>
             <MapHotel></MapHotel>
