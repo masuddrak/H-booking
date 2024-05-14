@@ -1,14 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-
+import notfountimg from "../assets/404.jpg"
 const NotFount = () => {
     return (
         <div className="flex justify-center min-h-[70vh] items-center">
         <div className="text-center">
-            <h1 className="text-7xl font-bold">OPPPS!!!</h1>
-            <h1 className="text-7xl font-bold">Page Not Found</h1>
             <div>
-                <Link to="/" className="btn bg-gray-800 text-white mt-10">Back To Home</Link>
+                <img src={notfountimg} alt="" />
+            </div>
+            <div>
+                <Link to="/" className="btn bg-pink-500 text-white mt-10">Back To Home</Link>
             </div>
         </div>
     </div>

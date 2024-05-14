@@ -19,7 +19,7 @@ const Header = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/rooms">Rooms</NavLink></li>
         <li><NavLink to="/mybooking">My Bookings</NavLink></li>
-        <li><NavLink to="/addroom">Add Room</NavLink></li>
+        {/* <li><NavLink to="/addroom">Add Room</NavLink></li> */}
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="/contact">Contact</NavLink></li>
     </>

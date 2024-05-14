@@ -61,7 +61,7 @@ const Home = () => {
             <div className="md:w-1/2 mx-auto flex justify-center mt-10 pt-6">
                 <div className="text-center space-y-2">
                     <h1 className="text-base-content text-xl md:text-4xl font-bold">Client Reviews</h1>
-                    <p className="text-base-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta molestiae deleniti perspiciatis totam at quos est vero, dolore vel reiciendis consequatur magni, quasi aliquam qui. Illo dolorem quia consectetur magni!</p>
+                    <p className="text-base-content">WanderLuxe Reviews is an emerging online platform dedicated to providing travelers with comprehensive and reliable hotel reviews from around the world. With a mission to empower travelers to make informed decisions and create memorable experiences.</p>
                 </div>
             </div>
             <div className="container mx-auto">

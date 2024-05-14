@@ -205,7 +205,9 @@ const RoomDetails = () => {
                 </div>
             </div>
             {/* reviews container */}
+            
             <div className="md:w-2/5 mb-10">
+            <h2 className="my-4 font-bold text-pink-600"><span className="text-slate-700 font-semibold">Total Reviews =</span> {data.length}</h2>
                 {
                     data.map(review => <Review key={review._id} review={review}></Review>)
                 }

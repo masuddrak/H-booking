@@ -1,8 +1,12 @@
-# React + Vite
+# H-Radisson
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ [H-Radisson Live Link](https://h-booking-96145.web.app/) 
 
-Currently, two official plugins are available:
+# H-Radisson feature
+- Hotel Management websit 
+- Booking Hotel Room
+- Remove Booking Hotel Room
+- Update Booking Hotel Room Date
+- Room Basis review System 
+- Authentication and Authorization 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
