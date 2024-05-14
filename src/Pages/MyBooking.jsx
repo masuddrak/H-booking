@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { BallTriangle } from 'react-loader-spinner';
+import { Helmet } from 'react-helmet';
 
 
 const MyBooking = () => {
@@ -46,7 +47,7 @@ const MyBooking = () => {
 
                 const remainingDay = dateC.diff(dateB, 'days')
 
-                if (remainingDay > 1) {
+                if (remainingDay >= 1) {
                     const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/deletemybookedlist/${id}`)
                     console.log(data)
                     refetch()
@@ -76,6 +77,9 @@ const MyBooking = () => {
     return (
 
         <div className="container mx-auto">
+             <Helmet>
+                <title>My Booking</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -101,7 +105,7 @@ const MyBooking = () => {
                                 </td>
                                 <td>
 
-                                    <span >{room.bookSize}sqb</span>
+                                    <span >{room.bookSize} sq.ft</span>
                                 </td>
                                 <td>
 

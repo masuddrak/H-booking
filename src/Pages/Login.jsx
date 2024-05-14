@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import logimage from "../assets/banner1.jpg"
+import { Helmet } from "react-helmet";
 const Login = () => {
     const location = useLocation()
     const naviget = useNavigate()
@@ -52,6 +53,9 @@ const Login = () => {
     }
     return (
         <div  style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${logimage})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center">
+             <Helmet>
+                <title>Loginn</title>
+            </Helmet>
             <div className="text-gray-100 mx-3 md:mx-0 w-full md:w-1/2 lg:w-1/4">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
                 <form onSubmit={handleSubmit(heldelLogin)} className="space-y-6 text-gray-600">

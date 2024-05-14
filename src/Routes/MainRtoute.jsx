@@ -11,12 +11,14 @@ import AddRooms from "../Pages/AddRooms";
 import RoomDetails from "../components/RoomDetails";
 import axios from "axios";
 import PrivetRoute from "../Providers/PrivetRoute";
+import NotFount from "../Pages/NotFount";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement:<NotFount></NotFount>,
     children:[
       {
         path:"/",

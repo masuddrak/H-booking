@@ -3,6 +3,7 @@ import axios from "axios";
 import Room from "../components/Room";
 import { useLoaderData } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 
 const Rooms = () => {
@@ -67,6 +68,9 @@ const Rooms = () => {
     }
     return (
         <div className="container mx-auto">
+             <Helmet>
+                <title>All Rooms</title>
+            </Helmet>
             <div className="my-2 md:my-10">
                 <form onSubmit={handelSerarch} className=" gap-4 grid grid-cols-3 w-full md:w-1/2  mx-auto items-center">
                     <div className="space-y-1 text-sm">

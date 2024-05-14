@@ -28,15 +28,15 @@ const ReviewSlider = () => {
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={2}
-                    
+
                     loop={true}
                     autoplay={{
                         delay: 2000,
                         disableOnInteraction: false,
-                      }}
+                    }}
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
-                    modules={[EffectFade, Navigation,Autoplay]}
+                    modules={[EffectFade, Navigation, Autoplay]}
                     // onSwiper={(swiper) => console.log(swiper)}
                     // onSlideChange={() => console.log('slide change')}
                     className="mySwiper"
@@ -48,7 +48,9 @@ const ReviewSlider = () => {
                                 <p className="flex items-center">{review.rating}{[...Array(parseInt(review.rating))].map((rat, index) => <IoIosStar key={index} className="text-pink-500"></IoIosStar>)}</p>
                                 <p className="font-semibold">{review.userName}</p>
                                 <p>{review.reviewDate}</p>
-                                <p>{review.comment}</p>
+                                <p >{review.comment.length > 100 ?
+                                    <p>{review.comment.slice(0, 100)}...</p> : review.comment
+                                }</p>
                             </div>
                         </SwiperSlide>
                     ))}

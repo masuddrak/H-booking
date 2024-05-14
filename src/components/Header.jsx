@@ -2,8 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../Providers/AuthProvider";
 import auth from "../firebase/firebase.config";
-import { TiStarburst } from "react-icons/ti";
-import { TiStarburstOutline } from "react-icons/ti";
+
 
 
 

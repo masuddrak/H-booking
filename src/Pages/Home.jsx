@@ -7,6 +7,8 @@ import axios from "axios";
 import FeacherRoom from "../components/FeacherRoom";
 import SectionTitle from "../components/SectionTitle";
 import { BallTriangle } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
+import ModalHome from "../components/ModalHome";
 
 const Home = () => {
     const [rooms, setRooms] = useState([])
@@ -21,6 +23,8 @@ const Home = () => {
         }
         fackData()
     }, [])
+    // modal
+
     if (loader) {
         return <div className="h-[80vh] flex justify-center items-center">
             <BallTriangle
@@ -38,7 +42,12 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <HomeBanner></HomeBanner>
+            {/* modal */}
+           <ModalHome></ModalHome>
             {/* feacher section */}
             <div className="bg-base-content glass ">
                 <SectionTitle></SectionTitle>

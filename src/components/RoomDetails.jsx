@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { data } from "autoprefixer";
 import { useQuery } from "@tanstack/react-query";
 import Review from "./Review";
+import { Helmet } from "react-helmet";
 const RoomDetails = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [showModal, setShowModal] = useState(false);
@@ -25,6 +26,18 @@ const RoomDetails = () => {
             return res.json()
         }
     })
+    // room details
+    const {data:roomsData ,refetch:refetchRoom} = useQuery({
+        queryKey: ["allrooms"],
+        queryFn: async () => {
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/singleroom/${_id}`)
+            return data
+        }
+    })
+
+
+
+
 
     if (isPending) {
         return <h1>Loading.......</h1>
@@ -49,6 +62,7 @@ const RoomDetails = () => {
             const { data } = axios.patch(`${import.meta.env.VITE_API_URL}/availability/${_id}`, { Availability })
             console.log(data)
             refetch()
+            refetchRoom()
         } catch (error) {
             console.log(error)
         }
@@ -57,8 +71,10 @@ const RoomDetails = () => {
 
 
             const { data } = axios.post(`${import.meta.env.VITE_API_URL}/bookrooms`, bookInfo)
-            naviget("/mybooking")
-            toast.success("Room Booking Success!")
+            naviget("/about")
+            refetch()
+            refetchRoom()
+            toast.success("Room Booking Success!,plase check Holet About")
 
         } catch (error) {
             console.log(error)
@@ -89,6 +105,9 @@ const RoomDetails = () => {
     }
     return (
         <div className="container m-auto  md:mb-5">
+            <Helmet>
+                <title>Room ID: {_id}</title>
+            </Helmet>
             <div className="grid mx-2 md:mx-0 grid-cols-3">
                 <img className=" col-span-2 h-[50vh] w-full object-cover " src={images3} alt="" />
                 <div className="h-[50vh] w-full">
@@ -104,9 +123,9 @@ const RoomDetails = () => {
                 </div>
                 <div className="shadow-lg w-full rounded-lg p-4 space-y-1">
                     <p><span className="font-bold text-base-content">Price per Night: </span>${Price}</p>
-                    <p><span className="font-bold text-base-content">Room Size: </span>{Size}</p>
+                    <p><span className="font-bold text-base-content">Room Size: </span>{Size} sq.ft</p>
                     <p><span className="font-bold text-base-content">Availabilit: </span>{Availability}</p>
-                    <p><span className="font-bold text-base-content">Special Offers: </span>{Offers}</p>
+                    <p><span className="font-bold text-base-content">Special Offers: </span>{Offers}% Discount</p>
                     {/*added book room  */}
                     <div>
                         <button

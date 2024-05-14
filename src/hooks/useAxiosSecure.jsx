@@ -6,7 +6,7 @@ import auth from "../firebase/firebase.config";
 import { signOut } from "firebase/auth";
 
 const AxiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://h-booking-server.vercel.app",
     withCredentials: true
 })
 const useAxiosSecure = () => {

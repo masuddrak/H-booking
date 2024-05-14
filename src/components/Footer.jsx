@@ -8,7 +8,8 @@ const Footer = () => {
         <div className="bg-base-200">
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <aside>
-                    <Link className="text-xl font-extrabold">H-Radisson</Link>
+                <Link className="text-xl font-extrabold"><span className="text-pink-500">H-R</span>
+                    adisson</Link>
                     <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
                 </aside>
                 <nav>

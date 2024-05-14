@@ -7,6 +7,7 @@ import { authContext } from "../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import logimage from "../assets/banner1.jpg"
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     const [hiddenPass, setHiddenPass] = useState(true)
@@ -79,6 +80,9 @@ const Register = () => {
     }
     return (
         <div  style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${logimage})` }} className="min-h-[40vh] md:min-h-[70vh] w-full bg-center bg-no-repeat  bg-cover bg-slate-900 flex justify-center items-center">
+             <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className="text-gray-100 mx-3 md:mx-0 w-full md:w-1/2 lg:w-1/4">
                 <h1 className="text-2xl font-bold text-center">Register Now!</h1>
                 <form onSubmit={handleSubmit(heldelRegister)} className="space-y-6 text-gray-600">
