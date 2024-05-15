@@ -60,7 +60,7 @@ const Header = () => {
                     {user ? <div className="z-20">
 
                         <div className="dropdown dropdown-end dropdown-hover">
-                            <div tabIndex={0} className=" m-1"><img className="md:w-[30px] md:h-[30px] w-[20px] h-[20px] object-cover rounded-full" src={user?.photoURL}></img></div>
+                            <div tabIndex={0} className=" m-1"><img className="w-[30px] h-[30px] object-cover rounded-full" src={user?.photoURL}></img></div>
                             <ul tabIndex={0} className="dropdown-content z-[10]  menu p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><a>{user?.displayName}</a></li>
                                 <li><button onClick={logoutHandler} className="btn bg-slate-500">Logout</button></li>

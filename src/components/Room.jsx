@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 
 
+
 const Room = ({ room }) => {
     const { _id,images3,Price,Offers} = room
     return (
-        <Link to={`/room/${_id}`} className="relative roomContainer rounded-md transition ease-in duration-500">
+        <Link to={`/room/${_id}`} data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000" className="relative roomContainer rounded-md transition ease-in duration-500">
              
             <img className="rounded-md" src={images3} alt="" />
             <div className="imagoverlay">Per Night ${Price}</div>

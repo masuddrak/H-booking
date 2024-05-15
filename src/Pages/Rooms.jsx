@@ -71,13 +71,13 @@ const Rooms = () => {
              <Helmet>
                 <title>All Rooms</title>
             </Helmet>
-            <div className="my-2 md:my-10">
+            <div className="my-2 mx-2 md:mx-0 md:my-10">
                 <form onSubmit={handelSerarch} className=" gap-4 grid grid-cols-3 w-full md:w-1/2  mx-auto items-center">
                     <div className="space-y-1 text-sm">
-                        <input type="number" name="minPrice" placeholder="Minimum Price" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                        <input type="number" name="minPrice" placeholder="Minimum $" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
                     </div>
                     <div className="space-y-1 text-sm">
-                        <input type="number" name="maxPrice" placeholder="Maximum Price" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
+                        <input type="number" name="maxPrice" placeholder="Maximum $" required className="w-full px-2 outline-0 py-2 border-b-[1px] border-gray-400" />
                     </div>
                     <div>
                         <input type="submit" value="search" className="bg-pink-500 text-white rounded background-transparent font-bold uppercase px-6 py-2 text-sm" />

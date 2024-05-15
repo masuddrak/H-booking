@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const FeacherRoom = ({ room }) => {
     const { _id, images3, Description, Price, Offers } = room
     return (
-        <Link to={`/room/${_id}`} className="relative shadow-md roomContainer transition ease-in rounded-t-md duration-500">
+        <Link to={`/room/${_id}`} data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="3000"  className="relative shadow-md roomContainer mx-2 md:mx-0 transition ease-in rounded-t-md duration-500">
             <img className="rounded-t-md " src={images3} alt="" />
             <div className="p-4 ">
                 <p className="absolute top-3 right-0 bg-base-content text-white px-3 py-2 rounded-l-md">{Offers}% discount</p>

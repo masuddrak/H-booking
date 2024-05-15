@@ -39,7 +39,7 @@ const ReviewSlider = () => {
                     modules={[EffectFade, Navigation, Autoplay]}
                     // onSwiper={(swiper) => console.log(swiper)}
                     // onSlideChange={() => console.log('slide change')}
-                    className="mySwiper"
+                    className="mySwiper  "
 
                 >
                     {reviews.map((review, index) => (
